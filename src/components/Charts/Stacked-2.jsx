@@ -17,7 +17,9 @@ import {
 } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 
-const Stacked = ({ width, height, currentMode }) => {
+const Stacked = ({ width, height }) => {
+  const { currentMode } = useStateContext();
+
   return (
     <ChartComponent
       id='charts'
@@ -27,15 +29,16 @@ const Stacked = ({ width, height, currentMode }) => {
       height={height}
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
-      legendSettings={{ background: 'white' }}
       background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+      legendSettings={{ background: 'white' }}
     >
+      <Inject services={[StackingColumnSeries, Category, Legend, Tooltip]} />
       <SeriesCollectionDirective>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         {stackedCustomSeries.map((item, index) => (
           <SeriesDirective key={index} {...item} />
         ))}
       </SeriesCollectionDirective>
-      <Inject services={[StackingColumnSeries, Category, Legend, Tooltip]} />
     </ChartComponent>
   );
 };

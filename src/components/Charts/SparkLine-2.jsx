@@ -1,11 +1,10 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   SparklineComponent,
   Inject,
   SparklineTooltip,
 } from '@syncfusion/ej2-react-charts';
 
-// ** If this is not done with class & PureComponent this crashes the app when screen size is changed
 class SparkLine extends React.PureComponent {
   render() {
     const { id, height, width, color, data, type, currentColor } = this.props;
